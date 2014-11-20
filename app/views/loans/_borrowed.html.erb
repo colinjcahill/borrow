@@ -1,0 +1,49 @@
+
+
+
+<div id = "borrowed" class = "listing">
+
+	<% if @loans.empty? %>
+
+Sorry, you don't have any loans.  Check out the items on the home page and make a request.
+
+<% else %>
+
+<h1> This is the listing of items you have borrowed:<h2>
+
+<table id = "borrowed">
+	<th>Item Borrowed</th>
+	<th>Loan Start Date</th>
+	<th>Loan End Date</th>
+	<th>Lender Name</th>
+	<th>Lender Location</th>
+	<th>Lender Rating</th>
+	<th>Your Score</th>
+	<th>Approval Status</th>
+	
+
+<% @loans.each do |loan| %>
+<tr>
+	<td><%= loan.item ? loan.item.name : "Item Deleted" %></td> 
+	<td><%= loan.loan_begin.strftime("%a, %b %d, %Y %I:%M%p") %></td> 
+	<td><%= loan.loan_end.strftime("%a, %b %d, %Y %I:%M%p") %>
+	<% if loan.expired? %>
+			<em class = "expired">Expired</em></td>
+			<% end %>
+	<td><%= loan.lender.first_name + ' ' + loan.lender.second_name %></td> 
+	<td><%= loan.lender.full_address %></td> 
+	
+	<td><%= loan.lender_score %> (for now)</td> 
+	<td><%= loan.lender_score %> (for now)</td> 
+	<% if loan.expired? %>
+	<td class ="expired"><em>Expired</em></td>
+			<% else %>
+	<td><em><%= loan.status %></em></td> 
+			<% end %>
+</tr>
+<% end %>
+</table>
+
+<% end %>
+
+</div>

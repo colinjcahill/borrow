@@ -1,0 +1,11 @@
+<div id ="logged_in_header">
+<%= truncate("Signed in as #{current_user.email}", length: 35) %>
+	<div class = "center_text float-left">
+	<h4>Hi, <%= truncate(current_user.first_name, length: 12) %>!
+	</div></h4>
+
+	<div>
+<%=link_to "Edit Profile", edit_user_registration_path %>
+<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+	</div>
+</div>

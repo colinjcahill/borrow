@@ -1,0 +1,43 @@
+<div id = "signup">
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label "First Name" %><br />
+  <%= f.text_field :first_name, autofocus: true %></div>
+
+  <div><%= f.label "Second Name" %><br />
+  <%= f.text_field :second_name, autofocus: true %></div>
+
+  <div><%= f.label "Address Line 1" %><br />
+  <%= f.text_field :address_1, autofocus: true %></div>
+
+  <div><%= f.label "Address Line 2" %><br />
+  <%= f.text_field :address_2, autofocus: true %></div>
+
+  <div><%= f.label "City" %><br />
+  <%= f.text_field :city, autofocus: true %></div>
+
+  <div><%= f.label "State" %><br />
+    <%= f.select :state, options_for_select(us_states) %></div>
+
+    <div><%= f.label "Postal Code" %><br />
+  <%= f.text_field :postal_code, autofocus: true %></div>
+
+<div><%= f.label "Country" %><br />
+  <%= f.text_field :country, autofocus: true %></div>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true %></div>
+
+  <div><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+<p class ="padding_bottom">
+
+  <div><%= f.submit "Sign up" %></div><%= render "devise/shared/links" %>
+<% end %>
+</div>

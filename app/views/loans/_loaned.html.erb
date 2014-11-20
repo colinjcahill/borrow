@@ -1,0 +1,47 @@
+<div id = "loans" class = "listing">
+
+<% if @loans.empty? %>
+
+
+No one has requested any of your items!  Make more stuff!
+
+
+<% else %>
+
+<h1> This is the listing of your loans:<h2>
+
+<table id = "loans">
+	<th>Item Loaned</th>
+	<th>Loan Start Date</th>
+	<th>Loan End Date</th>
+	<th>Borrower Name</th>
+	<th>Borrower Location</th>
+	<th>Borrower Rating</th>
+	<th>Your Score</th>
+	<th>Approval Status</th>
+	
+
+<% @loans.each do |loan| %>
+<tr>
+	<td><%= loan.item ? loan.item.name : "Item Deleted" %></td> 
+	<td><%= loan.loan_begin.strftime("%a, %b %d, %Y %I:%M%p") %></td> 
+	<td><%= loan.loan_end.strftime("%a, %b %d, %Y %I:%M%p") %>
+	<% if loan.expired? %>
+			<em class = "expired">Expired</em></td>
+			<% end %>
+	<td><%= loan.borrower.first_name %> <%= loan.borrower.second_name %></td> 
+	<td><%= loan.borrower.full_address %></td> 
+	<td><%= loan.borrower_score %> (for now)</td> 
+	<td><%= loan.lender_score %> (for now)</td> 
+		<% if loan.expired? %>
+	<td class ="expired"><em>Expired</em></td>
+			<% else %>
+	<td><em><%= loan.status %></em></td> 
+			<% end %>
+</tr>
+<% end %>
+</table>
+
+
+<% end %>
+</div>

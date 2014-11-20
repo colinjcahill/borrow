@@ -1,0 +1,15 @@
+<div id ="items_index" class = "listing">
+
+<% if params[:user_id] == nil %>
+
+<%= render 'items_listing' %>
+
+<% else %>
+
+<%= render 'my_items_listing' %>
+
+<% end %>
+
+</div>
+
+
