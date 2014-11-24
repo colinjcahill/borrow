@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-	  validates_presence_of :name, :category, :description, :value, :category_id, :image_path
+	  validates_presence_of :name, :category, :description, :value, :category_id
 
 	  validates :name, length: { minimum: 10, message: "Your item name is too short.  Please be more descriptive." }
 	  validates :description, length: { minimum: 20, message: "Your item description is too short.  Please be more descriptive." }
@@ -7,6 +7,9 @@ class Item < ActiveRecord::Base
 	belongs_to :category
 	belongs_to :user
 	has_many :loans
+	has_one :image_path
+
+	mount_uploader :image_path, ItemUploader
 
 	before_validation :defaults
 

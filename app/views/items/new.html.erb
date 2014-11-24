@@ -1,7 +1,7 @@
 <div id ="item_new"class ="form">
 <h1> Hey bro, make a new item:</h2>
 
-<%= form_for @item do |f| %>
+<%= form_for @item, :html => {:multipart => true} do |f| %>
 <div>
     <%= f.label "Item Name" %>
     <%= f.text_field :name %>
@@ -23,8 +23,8 @@
   </div>
 
   <div>
-    <%= f.label "Image Path" %>(For now, please enter a remote/local image path)
-    <%= f.text_field :image_path %>
+    <%= f.label "Image" %>
+    <%= f.file_field :image_path %>
   </div>
 <%= f.submit %>
 <% end %>
